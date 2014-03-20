@@ -1,0 +1,24 @@
+{
+  "name": "EthicalCode-Webapp",
+  "version": "0.0.0",
+  "description": "The web app that powers the Ethical Code pull-request-a-thon",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EthicalCode/webapp.git"
+  },
+  "keywords": [
+    "ethical",
+    "code",
+    "github"
+  ],
+  "author": "Ross Penman <ross@pen.mn> (@PenmanRoss)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EthicalCode/webapp/issues"
+  },
+  "homepage": "https://github.com/EthicalCode/webapp"
+}
