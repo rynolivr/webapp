@@ -2,7 +2,7 @@
   "name": "EthicalCode-Webapp",
   "version": "0.0.0",
   "description": "The web app that powers the Ethical Code pull-request-a-thon",
-  "main": "main.js",
+  "main": "app.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/EthicalCode/webapp/issues"
   },
-  "homepage": "https://github.com/EthicalCode/webapp"
+  "homepage": "https://github.com/EthicalCode/webapp",
+  "dependencies": {
+    "zappajs": "^0.4.22",
+    "coffee-script": "^1.7.1",
+    "passport": "^0.2.0",
+    "passport-github": "^0.1.5",
+    "node-env-file": "^0.1.0"
+  }
 }
