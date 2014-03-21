@@ -6,4 +6,4 @@ module.exports =
     "name": "hw",
     "matched": "apple",
     "status": "queued",
-    "file": "https: //github.com/hedgewars/hw/blob/1a66e765df311b0eaa4a37e30ff532676f895dde/share/hedgewars/Data/Names/apple.txt"
+    "file": "https://github.com/hedgewars/hw/blob/1a66e765df311b0eaa4a37e30ff532676f895dde/share/hedgewars/Data/Names/apple.txt"
