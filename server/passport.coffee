@@ -11,7 +11,7 @@ passport.deserializeUser (obj, done) -> done null, obj
 passport.use new GitHubStrategy
   clientID: process.env.GITHUB_CLIENT_ID
   clientSecret: process.env.GITHUB_CLIENT_SECRET
-  callbackURL: "http://#{process.env.HOSTNAME}:#{process.env.PORT}/"
+  callbackURL: "http://#{process.env.HOSTNAME}:#{process.env.PORT}/auth/github/callback"
 , (accessToken, refreshToken, profile, done) ->
   # database stuff would happen here if we had a database
   # instead, just return the stuff that GitHub sends

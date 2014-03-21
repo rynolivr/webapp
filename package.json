@@ -2,7 +2,7 @@
   "name": "EthicalCode-Webapp",
   "version": "0.0.0",
   "description": "The web app that powers the Ethical Code pull-request-a-thon",
-  "main": "app.coffee",
+  "main": "server/app.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
