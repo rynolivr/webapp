@@ -4,6 +4,9 @@ module.exports = ->
   controller = (name) -> require "../controllers/#{name}"
   authenticated = @passport.authenticate('github', failureRedirect: '/login')
 
+  # listing repositories
+  @get '/': controller('repos').list
+
   # authentication
   @get '/login': controller('sessions').new
   @get '/auth/github': @passport.authenticate('github')
