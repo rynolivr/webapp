@@ -1,2 +1,2 @@
 module.exports =
-  new: -> "hello world"
+  new: (req, res) -> res.render 'sessions/new'
