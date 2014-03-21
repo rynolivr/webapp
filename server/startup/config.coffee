@@ -10,7 +10,7 @@ module.exports = ->
 
   @set 'storage-uri', 'mongodb://localhost/repos'
 
-  mongoose.connect @get('storage-uri'), { db: { safe: true }}, (err) ->
+  mongoose.connect @get('storage-uri'), db: safe: true, (err) ->
     console.log "[OK]: Mongoose connected"
 
   require '../model/repo'
