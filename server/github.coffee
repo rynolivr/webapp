@@ -8,7 +8,7 @@ path = fs.realpathSync("#{__dirname}/../terms.txt")
 terms = fs.readFileSync(path).toString().split(/\n/)
 terms.pop() unless _.last(terms)
 
-GitHub =
+module.exports =
   next: (callback) ->
     # TODO: load next result from queue
 
@@ -16,7 +16,7 @@ GitHub =
     word = @nextWord()
 
     request
-      uri: "https://www.kimonolabs.com/api/4ig21rzm",
+      uri: "https://www.kimonolabs.com/api/4ig21rzm"
       qs:
         apikey: process.env.KIMONO_API_KEY
         q: word
@@ -38,6 +38,3 @@ GitHub =
   nextWord: ->
     @counter ?= 0
     terms[@counter++ % terms.length]
-
-# console.log process.env.KIMONO_API_KEY
-GitHub.loadNextWords (body) -> console.log JSON.parse(body).name
