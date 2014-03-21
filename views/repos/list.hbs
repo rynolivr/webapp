@@ -1,5 +1,9 @@
 <html>
 <head>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -9,8 +13,20 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-</head>
-<body>
+<script type="text/javascript">
+$(document).ready(function()
+{
+	$.getJSON("/ajax/repos/next", function(data)
+	{
+		$("#next").text(data.name);
+		$("#next").attr("href", data.file);
+	});
+});
+</script>
 
+</head>
+
+<body>
+The next repository is <a id="next"></a>.
 </body>
 </html>
