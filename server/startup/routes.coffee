@@ -1,10 +1,10 @@
-controller = (name) -> require "../controllers/#{name}"
-
 module.exports = ->
+
+  # helper functions
+  controller = (name) -> require "../controllers/#{name}"
+  authenticated = @passport.authenticate('github', failureRedirect: '/login')
 
   # authentication
   @get '/login': controller('sessions').new
   @get '/auth/github': @passport.authenticate('github')
-  @get '/auth/github/callback',
-    @passport.authenticate('github', failureRedirect: '/login'),
-    (req, res) -> res.redirect '/'
+  @get '/auth/github/callback', authenticated, (req, res) -> res.redirect '/'
