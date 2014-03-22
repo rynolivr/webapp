@@ -51,20 +51,36 @@ body {
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function()
+function next()
 {
 	$.getJSON("/ajax/repos/next", function(data)
 	{
 		$("#next-repo").text(data.name);
 		$("#next-repo").attr("href", data.file);
 		$("#next-repo-owner").text(data.owner);
-		$("#done").onclick = function(){
+		$("#done").click(function()
+		{
 			//Done
-		}
-		$("#not").onclick = function(){
+			$.post( "/ajax/repos/fix", { owner: data.owner, name: data.name, offensive: 1}).done(function(data)
+				{
+					next();
+				});
+		});
+
+		$("#not").click(function()
+		{
 			//Not offensive
-		}
+			$.post( "/ajax/repos/fix", { owner: data.owner, name: data.name, offensive: 0}).done(function(data)
+			{
+				next();
+			});
+		});
 	});
+}
+
+$(document).ready(function()
+{
+	next();
 });
 </script>
 
