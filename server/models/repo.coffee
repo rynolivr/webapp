@@ -1,7 +1,9 @@
 Sequelize = require 'sequelize'
 sequelize = require '../db'
+async = require 'async'
+_ = require 'lodash'
 
-module.exports = sequelize.define 'Repo',
+module.exports = Repo = sequelize.define 'Repo',
   owner: Sequelize.STRING
   name: Sequelize.STRING
   matched: Sequelize.STRING
@@ -12,4 +14,10 @@ module.exports = sequelize.define 'Repo',
   underscored: true
   tableName: 'repos'
 
-Repo = module.exports
+Repo.displayCounts = (callback) ->
+  queries =
+    pull_requests: @count(where: status: 'fixed')
+
+  async.map _.pairs(queries),
+    (q, done) -> q[1].success (results) -> done(null, [q[0], results])
+    (error, results) -> callback _.zipObject results

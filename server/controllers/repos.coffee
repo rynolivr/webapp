@@ -18,9 +18,4 @@ module.exports =
           fixer_id: req.user.username
           status: if req.body.offensive then 'fixed' else 'fix not needed'
   count: (req, res) ->
-    queries =
-      pull_requests: Repo.count(where: status: 'fixed')
-
-    async.map _.pairs(queries),
-      (q, done) -> q[1].success (results) -> done(null, [q[0], results])
-      (error, results) -> res.send _.zipObject results
+    Repo.displayCounts (counts) -> res.send counts
