@@ -45,6 +45,16 @@ body {
 	width: 40%;
 	margin:10px 4%;
 }
+
+.count-display {
+	width: 60%;
+	text-align: center;
+	margin: 50 auto;
+	background: rgba(40, 40, 40, 0.9);
+	padding: 40px;
+	border-radius: 10px;
+	color: white;
+}
 </style>
 
 <!-- Latest compiled and minified JavaScript -->
@@ -81,9 +91,20 @@ function next()
 	});
 }
 
+function updateCount()
+{
+	$.getJSON("/ajax/repos/count", function(data)
+	{
+		console.log("DONE");
+		$(".count").text(data.pull_requests);
+	});
+}
+
 $(document).ready(function()
 {
 	next();
+	var update = updateCount();
+	setInterval("update", 500);
 });
 </script>
 
@@ -92,11 +113,14 @@ $(document).ready(function()
 <body>
 <center><img src="http://ethicalcode.github.io/images/eclogo1.png" class="logo"></center>
 <div class="display-area">
-The next repository is <a id="next-repo"></a>, by <span id="next-repo-owner"></span>.
+The next repository is <a id="next-repo">(loading...)</a>, by <span id="next-repo-owner">(loading...)</span>.
 </div>
 <div class="button-area">
 <button type="button" class="btn btn-success" id="done">This Is Done</button>
 <button type="button" class="btn btn-info" id="not">This Is Not Offensive</button>
+</div>
+<div class="count-display">
+There have been <span class="count">(loading...)</span> pull requests.
 </div>
 </body>
 </html>
