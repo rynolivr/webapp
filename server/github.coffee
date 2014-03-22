@@ -45,8 +45,18 @@ module.exports =
 
       did I ever mention I'm not a huge fan of sequelize?
       ###
-      async.map repos,
-        (repo, done) -> Repo.create(repo).success(done)
+      async.mapSeries repos,
+        (repo, done) ->
+          console.log('checking', repo.owner, repo.name)
+          # check to see if this repo has already been queued
+          Repo.count(where: _.pick repo, 'owner', 'name').success (already) ->
+            console.log 'already', already
+
+            if already
+              # console.log "#{owner}/#{name} has already been added"
+              done()
+            else
+              Repo.create(repo).success -> done()
         callback
 
   pageNumber: -> if @counter? then parseInt(@counter / terms.length, 10) + 1 else 0
