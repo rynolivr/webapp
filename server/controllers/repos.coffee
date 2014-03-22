@@ -12,10 +12,9 @@ module.exports =
   next: (req, res) -> GitHub.next (repo) -> res.send repo
   fix: (req, res) ->
     res.end()
-    if req.user?
-      Repo.find(where: _.pick(req.body, 'name', 'owner')).success (repo) ->
-        repo.updateAttributes
-          fixer_id: req.user.username
-          status: if req.body.offensive then 'fixed' else 'fix not needed'
+    Repo.find(where: _.pick(req.body, 'name', 'owner')).success (repo) ->
+      repo.updateAttributes
+        fixer: req.user?.username
+        status: if req.body.offensive then 'fixed' else 'fix not needed'
   count: (req, res) ->
     Repo.displayCounts (counts) -> res.send counts
