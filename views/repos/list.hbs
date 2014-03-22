@@ -58,7 +58,7 @@ function next()
 		$("#next-repo").text(data.name);
 		$("#next-repo").attr("href", data.file);
 		$("#next-repo-owner").text(data.owner);
-		$("#done").click(function()
+		$("#done")[0].onclick = (function()
 		{
 			//Done
 			$.post( "/ajax/repos/fix", { owner: data.owner, name: data.name, offensive: 1}).done(function(data)
@@ -67,7 +67,7 @@ function next()
 				});
 		});
 
-		$("#not").click(function()
+		$("#not")[0].onclick = (function()
 		{
 			//Not offensive
 			$.post( "/ajax/repos/fix", { owner: data.owner, name: data.name, offensive: 0}).done(function(data)
