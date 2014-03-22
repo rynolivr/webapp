@@ -3,6 +3,7 @@ require('node-env-file')("#{__dirname}/.env")
 request = require 'request'
 fs      = require 'fs'
 _       = require 'lodash'
+Repo    = require './models/repo'
 
 path = fs.realpathSync("#{__dirname}/../terms.txt")
 terms = fs.readFileSync(path).toString().split(/\n/)
@@ -12,7 +13,13 @@ module.exports =
   next: (callback) ->
     # TODO: load next result from queue
 
-  loadNextRepos: (callback) ->
+    Repo.find(where: status: 'queued').success (repo) =>
+      if repo
+        callback(repo)
+      else
+        @loadNextRepos => @next(callback)
+
+  loadNextRepos: (callback = ->) ->
     word = @nextWord()
 
     request
@@ -26,12 +33,11 @@ module.exports =
         owner: e.repo.text.split('/')[0]
         name: e.repo.text.split('/')[1]
         matched: word
-        status: "unqueued"
+        status: "queued"
         file: e.filename.href
 
-      # TODO: put into database
-
-      callback(repos)
+      # Repo.add repos, -> cb?(repos)
+      Repo.bulkCreate(repos).success(callback)
 
   pageNumber: -> if @counter? then @counter / terms.length else 0
 

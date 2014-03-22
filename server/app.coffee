@@ -7,6 +7,7 @@ require('zappajs') ->
   # and assign it to `this`.
   @[name] = require "./#{name}" for name in [
     'passport'
+    'db'
   ]
 
   # load app configuration scripts.
@@ -15,3 +16,5 @@ require('zappajs') ->
     'middleware'
     'routes'
   ]
+
+  require './github'
