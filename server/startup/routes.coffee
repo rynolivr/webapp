@@ -7,6 +7,7 @@ module.exports = ->
   # listing repositories
   @get '/', controller('repos').list
   @get '/ajax/repos/next': controller('repos').next
+  @get '/ajax/repos/count': controller('repos').count
   @post '/ajax/repos/fix': controller('repos').fix
 
   # authentication
