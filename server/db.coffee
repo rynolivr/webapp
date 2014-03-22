@@ -1,8 +1,9 @@
 Sequelize = require 'sequelize'
 
-Repo = new Sequelize process.env.DATABASE_NAME, "", "",
+sequelize = new Sequelize process.env.DATABASE_NAME, "", "",
   dialect: 'postgres'
   host: 'localhost'
   port: 5432
+  omitNull: true
 
-module.exports = Repo
+module.exports = sequelize

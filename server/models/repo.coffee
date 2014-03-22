@@ -11,3 +11,5 @@ module.exports = sequelize.define 'Repo',
 ,
   underscored: true
   tableName: 'repos'
+
+Repo = module.exports
