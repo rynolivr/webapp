@@ -4,6 +4,7 @@ request = require 'request'
 fs      = require 'fs'
 _       = require 'lodash'
 Repo    = require './models/repo'
+async   = require 'async'
 
 path = fs.realpathSync("#{__dirname}/../terms.txt")
 terms = fs.readFileSync(path).toString().split(/\n/)
@@ -27,8 +28,11 @@ module.exports =
       qs:
         apikey: process.env.KIMONO_API_KEY
         q: word
+        p: @pageNumber()
 
     , (error, response, body) ->
+      console.log body
+
       repos = JSON.parse(body).results.collection1.map (e) ->
         owner: e.repo.text.split('/')[0]
         name: e.repo.text.split('/')[1]
@@ -37,9 +41,11 @@ module.exports =
         file: e.filename.href
 
       # Repo.add repos, -> cb?(repos)
-      Repo.bulkCreate(repos).success(callback)
+      async.map repos,
+        (repo, done) -> Repo.create(repo).success (repo) -> done(repo)
+        callback
 
-  pageNumber: -> if @counter? then @counter / terms.length else 0
+  pageNumber: -> if @counter? then parseInt(@counter / terms.length, 10) else 0
 
   nextWord: ->
     @counter ?= 0
