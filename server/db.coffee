@@ -1,6 +1,6 @@
 Sequelize = require 'sequelize'
 
-Repo = new Sequelize 'rosspenman', '', '',
+Repo = new Sequelize process.env.DATABASE_NAME, "", "",
   dialect: 'postgres'
   host: 'localhost'
   port: 5432
