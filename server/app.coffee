@@ -1,7 +1,7 @@
 require 'coffee-script'
 require 'node-env-file'
 
-require('zappajs') ->
+app = require('zappajs') process.env.PORT or 3000, ->
 
   # load custom configuration for modules
   # and assign it to `this`.

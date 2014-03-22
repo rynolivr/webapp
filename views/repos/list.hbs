@@ -58,6 +58,12 @@ $(document).ready(function()
 		$("#next-repo").text(data.name);
 		$("#next-repo").attr("href", data.file);
 		$("#next-repo-owner").text(data.owner);
+		$("#done").onclick = function(){
+			//Done
+		}
+		$("#not").onclick = function(){
+			//Not offensive
+		}
 	});
 });
 </script>
@@ -70,8 +76,8 @@ $(document).ready(function()
 The next repository is <a id="next-repo"></a>, by <span id="next-repo-owner"></span>.
 </div>
 <div class="button-area">
-<button type="button" class="btn btn-success">This Is Done</button>
-<button type="button" class="btn btn-info">This Is Not Offensive</button>
+<button type="button" class="btn btn-success" id="done">This Is Done</button>
+<button type="button" class="btn btn-info" id="not">This Is Not Offensive</button>
 </div>
 </body>
 </html>
