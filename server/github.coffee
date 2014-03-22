@@ -15,7 +15,7 @@ module.exports =
 
     Repo.find(where: status: 'queued').success (repo) =>
       if repo
-        callback(repo)
+        repo.updateAttributes(status: 'checking').success -> callback(repo)
       else
         @loadNextRepos => @next(callback)
 
@@ -23,7 +23,7 @@ module.exports =
     word = @nextWord()
 
     request
-      uri: "https://www.kimonolabs.com/api/4ig21rzm"
+      uri: "https://www.kimonolabs.com/api/bpbspnvq"
       qs:
         apikey: process.env.KIMONO_API_KEY
         q: word
