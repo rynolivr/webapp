@@ -61,6 +61,8 @@ body {
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
+var delayInSeconds = 3;
 function next()
 {
 	$("#next-repo").text('');
@@ -103,8 +105,7 @@ function updateCount()
 $(document).ready(function()
 {
 	next();
-	var update = updateCount();
-	setInterval("update", 500);
+	setInterval(updateCount, delayInSeconds * 1000);
 });
 </script>
 
