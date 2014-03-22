@@ -38,7 +38,7 @@ body {
 	background: rgba(40, 40, 40, 0.9);
 	padding: 10px;
 	border-radius: 10px;
-	color: white;	
+	color: white;
 }
 
 .button-area button {
@@ -53,6 +53,9 @@ body {
 <script type="text/javascript">
 function next()
 {
+	$("#next-repo").text('');
+	$("#next-repo").attr("href", '');
+	$("#next-repo-owner").text('');
 	$.getJSON("/ajax/repos/next", function(data)
 	{
 		$("#next-repo").text(data.name);
