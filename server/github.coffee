@@ -43,7 +43,7 @@ module.exports =
       can't use Sequelize bulkCreate because it tries to insert a null id which
       violates postgres serial non-null create
 
-      did I ever mention I'm not a huge fan of sequqlize?
+      did I ever mention I'm not a huge fan of sequelize?
       ###
       async.map repos,
         (repo, done) -> Repo.create(repo).success(done)
