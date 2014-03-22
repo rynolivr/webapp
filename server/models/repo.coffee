@@ -7,6 +7,7 @@ module.exports = sequelize.define 'Repo',
   matched: Sequelize.STRING
   status: Sequelize.STRING
   file: Sequelize.STRING
+  fixer: Sequelize.STRING
 ,
   underscored: true
   tableName: 'repos'
