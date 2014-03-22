@@ -5,7 +5,7 @@ module.exports = ->
   authenticated = @passport.authenticate('github', failureRedirect: '/login')
 
   # listing repositories
-  @get '/': controller('repos').list
+  @get '/', controller('repos').list
   @get '/ajax/repos/next': controller('repos').next
 
   # authentication
